@@ -10,7 +10,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+
 
     <header class="fixed-top bg-danger bg-opacity-75">
         <nav class="navbar navbar-expand-lg navbar-dark">
@@ -97,6 +97,9 @@
           </div>
         </nav>
     </header>
-    <%= yield %>
+    <body class='pt-5 mt-5'>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
