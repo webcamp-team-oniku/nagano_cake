@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  
+  
 
   root :to =>"public/homes#top"
   get '/about' =>"public/homes#about"
@@ -35,8 +37,8 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :update]
     resources :order_items, only: [:update]
   end
-
-   # 管理者用
+  
+    # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, skip:[:registrations, :passwords],controllers:{
     sessions: "admin/sessions"
@@ -48,4 +50,6 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+
+ 
 end
