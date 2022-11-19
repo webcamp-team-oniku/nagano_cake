@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class='pt-3 pl-5 ml-5'>
+      <h1><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h1>
+    </div>
+  </div>
+
+
+<%= form_with url: admin_customer_path(@customer), model: @customer, local: true do |customer| %>
+  <div class= "form-group">
+    <%= customer.label :id, '会員ID', class: "col-sm-2 control-label" %>
+    <%= @customer.id %>
+  </div>
+
+  <div class= "form-group">
+    <%= customer.label "氏名", class: "col-sm-2 control-label"%>
+    <%= customer.text_field :last_name, class: "mr-5" %>
+    <%= customer.text_field :first_name %>
+  </div>
+
+  <div class= "form-group">
+          <%= customer.label "フリガナ", class: "col-sm-2 control-label"%>
+    <%= customer.text_field :last_name_kana, class: "mr-5" %>
+    <%= customer.text_field :first_name_kana %>
+  </div>
+
+  <div class= "form-group">
+    <%= customer.label "郵便番号", class: "col-sm-2 control-label" %>
+    <%= customer.text_field :postcode, class: "mr-5" %>
+  </div>
+
+  <div class= "form-group">
+    <%= customer.label "住所", class: "col-sm-2 control-label" %>
+    <%= customer.text_field :address, class: "mr-5", :size=>"60" %>
+  </div>
+
+  <div class= "form-group">
+    <%= customer.label "電話番号", class: "col-sm-2 control-label" %>
+    <%= customer.text_field :telephone_number, class: "mr-5" %>
+  </div>
+
+  <div class= "form-group">
+    <%= customer.label "メールアドレス", class: "col-sm-2 control-label" %>
+    <%= customer.text_field :email, class: "mr-5" %>
+  </div>
+
+  <div class= "form-group">
+    <%= customer.label "会員ステータス" , class: "col-sm-2 control-label"%>
+    <%= customer.radio_button :is_deleted, :false %>
+    <%= customer.label :is_deleted, "有効", value: false %>
+    <%= customer.radio_button :is_deleted,  :true %>
+    <%= customer.label :is_deleted, "退会", value: true %>
+  </div>
+
+  <div class = "actions" >
+    <%= customer.label " " , class: "col-sm-2 control-label" %>
+    <%= customer.submit "変更を保存", class: 'btn btn-success' %>
+  </div>
+
+<% end %>
+
+
+
+
