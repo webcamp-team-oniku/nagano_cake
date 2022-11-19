@@ -17,6 +17,7 @@ class Admin::CustomersController < ApplicationController
       redirect_to admin_customer_path
     else
       render "edit"
+    end
   end
 
   def customer_params
