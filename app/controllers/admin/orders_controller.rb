@@ -10,6 +10,7 @@ class Admin::OrdersController < ApplicationController
     @order_items = OrderItem.where(order_id: params[:id])
     if @order.update(order_params)
       @order.order_items.update_all(status: 1) if @order.status == "is_waiting" 
+    end
       #入金確認したら自動更新で製作ステータスが全て製作待ちになる
     redirect_to request.referer
   end
@@ -21,4 +22,4 @@ class Admin::OrdersController < ApplicationController
     params.require(:orders).permit(:status)
   end
 end
-@order.order_details.update_all(product_status: 1)
+
