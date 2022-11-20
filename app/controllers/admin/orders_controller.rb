@@ -1,4 +1,9 @@
 class Admin::OrdersController < ApplicationController
+  
+  def index
+    @customer = Customer.find(params[:id])
+    @orders = @customer.orders.page(params[:page]).order(created_at: "DESC")
+  end
 
   def show
     @order = Order.find(params[:id])
