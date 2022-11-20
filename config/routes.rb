@@ -51,7 +51,8 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-
- get "search" => "searches#search"
+　
+　#検索機能
+  get "search" => "searches#search"
  
 end
