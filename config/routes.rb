@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  
-  
+
+
 
   root :to =>"public/homes#top"
   get '/about' =>"public/homes#about"
-  resources :items, only: [:index,:show]
 
 
   scope module: :public do
@@ -23,6 +22,8 @@ Rails.application.routes.draw do
     post '/orders/confirm' => 'orders#confirm'
     get '/orders/thanks' => 'orders#thanks'
 
+    resources :items, only: [:index,:show]
+
     resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
 
     resources :orders, only: [:new, :create, :index, :show]
@@ -38,7 +39,7 @@ Rails.application.routes.draw do
     get "index/:id" => "orders#index"
     resources :order_items, only: [:update]
   end
-  
+
     # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, skip:[:registrations, :passwords],controllers:{
@@ -52,5 +53,5 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
- 
+
 end
