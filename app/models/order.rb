@@ -11,5 +11,7 @@ class Order < ApplicationRecord
      preparing_shipment: 3,
      shipped: 4
   }
+  
+  enum payment_method: { credit_card: 0, transfer: 1 }
 
 end
