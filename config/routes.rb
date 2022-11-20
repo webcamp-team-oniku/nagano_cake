@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   root :to =>"public/homes#top"
   get '/about' =>"public/homes#about"
-  resources :items, only: [:index,:show]
 
 
   scope module: :public do
@@ -25,6 +24,8 @@ Rails.application.routes.draw do
     # get '/orders/confirm' => redirect('orders/new')
     # でnewページに変移するにする
     get '/orders/thanks' => 'orders#thanks'
+
+    resources :items, only: [:index,:show]
 
     resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
 

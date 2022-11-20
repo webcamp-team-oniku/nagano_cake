@@ -12,7 +12,4 @@ Kaminari.configure do |config|
   # config.max_pages = nil
   # config.params_on_first_page = false
 
-  # 1ページに10件まで表示
-  config.default_per_page = 10
-
 end
