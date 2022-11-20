@@ -1,7 +1,7 @@
 #enumの内容を日本語で表示
 ja:
   enums:
-  
+
     order:
       status:
         waiting_deposit: "入金待ち"
@@ -9,12 +9,15 @@ ja:
         in_production: "製作中"
         preparing_shipment: "発送準備中"
         shipped: "発送済み"
-        
+
     order_item:
       status:
         cannot_make: "着手不可"
         is_waiting: "製作待ち"
         is_making: "製作中"
         completed: "製作完了"
-      
-    
+
+    order:
+      payment_method:
+        credit_card: "クレジットカード"
+        transfer: "銀行振込"

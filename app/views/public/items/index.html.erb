@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-2">
+      <!-ジャンル一覧表示->
+      <%= render 'genre', genres: @genres %>
+
+    <div class="col-10">
+      <div class="mt-2">
+        <h3><strong>商品一覧</strong><span class="small">（全<%= @items_all.count %>件）</span></h3>
+
+      　<div class="d-flex flex-wrap item-link mb-5">
+          <% @items.each do |item| %>
+            <%= link_to item_path(item), class: "text-dark" do %>
+              <div class="m-1 p-1">
+                <%= image_tag item.get_image, size:"200x150" %>
+                <p class="mt-3 mb-1"><strong><%= item.name %></strong></p>
+                <!=販売停止中の商品は売切表示=>
+                <% if item.is_active == true %>
+                  <p class="mt-3 mb-1">￥<%= item.add_tax_price.to_s(:delimited) %>(税込)</p>
+                <% else %>
+                  <p class="mt-3 mb-1 text-danger" ><strong>売切</strong></p>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <!-ページネーション->
+        <div class="d-flex justify-content-center">
+        　<%= paginate @items %>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
