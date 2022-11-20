@@ -20,9 +20,6 @@ Rails.application.routes.draw do
 
 
     post '/orders/confirm' => 'orders#confirm'
-    # リロードで消えて欲しくなければ
-    # get '/orders/confirm' => redirect('orders/new')
-    # でnewページに変移するにする
     get '/orders/thanks' => 'orders#thanks'
 
     resources :items, only: [:index,:show]
