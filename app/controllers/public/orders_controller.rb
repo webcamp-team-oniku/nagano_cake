@@ -37,6 +37,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def idex
+    @orders = current_customer.order.all
   end
 
   def create
