@@ -49,8 +49,8 @@
           <tr>
             <td><%= order_item.item.name %></td>
             <td><%= order_item.item.add_tax_price %> 円</td>
-            <td><%= order_item.item.amount %> 個</td>
-            <td><%= (order_item.item.add_tax_price * order_item.item.amount).to_s(:delimited) %> 円</td>
+            <td><%= order_item.amount %> 個</td>
+            <td><%= (order_item.item.add_tax_price * order_item.amount).to_s(:delimited) %> 円</td>
             <td><%= form_with model: order_items, url: admin_order_item_path(@order.item), method: :patch do |f| %>
                 <%= f.select :status, OrderItem.statuses_i18n.invert, {prompt: true}, class:"form-control form-control-sm"  %>
                 <%= f.submit "更新" , class: "btn  btn-sm btn-success" %>
