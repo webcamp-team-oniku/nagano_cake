@@ -21,7 +21,7 @@
       <h3><strong>新着商品</strong></h3>
       <% @items_new.each do |item| %>
         <%= link_to item_path(item.id) do %>
-          <%= image_tag item.get_image(250,150) %>
+          <%= image_tag item.get_item_image, size:'200x150' %>
         <% end %><br>
       <h6><%= item.item_name %></h6>
       <h6><%= item.add_tax_price.to_s(:delimited) %></h6>
