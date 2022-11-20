@@ -52,6 +52,10 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+<<<<<
+ 
+=======
 
 
+>>>>>>> origin/develop
 end

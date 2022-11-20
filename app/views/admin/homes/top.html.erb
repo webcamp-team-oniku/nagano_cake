@@ -14,7 +14,7 @@
           </tr>
         </thead>
         <tbody>
-          <%= @orders.each do |orrder| %>
+          <% @orders.each do |orrder| %>
           <tr>
             <td>
               <%= link_to admin_order_path(order.id) do %>

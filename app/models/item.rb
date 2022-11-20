@@ -17,5 +17,9 @@ class Item < ApplicationRecord
   def add_tax_price
     (self.price * 1.10).round
   end
+  
+  def self.looks(search)
+    Item.where("name LIKE?","%#{search}%")
+  end
 
 end
