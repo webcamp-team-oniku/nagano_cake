@@ -6,6 +6,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+    @shipping_cost = 800
+    @order = order.find(params[:id])
   end
 
   def confirm
@@ -30,7 +32,7 @@ class Public::OrdersController < ApplicationController
 
     @cart_items = current_customer.cart_items.all
     @order.customer_id = current_customer.id
-    @postage = 800
+    @shipping_cost = 800
   end
 
   def thanks
