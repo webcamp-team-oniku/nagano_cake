@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     # 顧客側のカート画面
     delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
     resources :cart_items, only: [:index, :update, :create, :destroy]
+    #ジャンル検索
+    resources :genres, only: [:show]
 
 
     post '/orders/confirm' => 'orders#confirm'

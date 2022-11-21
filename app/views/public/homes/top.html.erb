@@ -1,8 +1,13 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-md-8 offset-md-2 mt-3">
-      <div class="card" style="background-size: cover;" >
+    <div class="col-lg-2 pt-3">
+        <!-- ジャンル選択のサイドバー -->
+        <%= render 'public/items/genre', genres: @genres %>
+    </div>
+
+    <div class="col-lg-8 offset-md-3 mt-3">
+      <div class="card" style="background-size: cover;">
         <img class="card-img " src="/assets/top.jpeg" alt="">
         <div class="card-img-overlay">
           <h5 >
@@ -16,31 +21,23 @@
     </div>
   </div>
 
-  <div class="row mt-3">
-    <div class="col ">
+  <div class="row">
+    <div class="col-3">
       <h3><strong>新着商品</strong></h3>
+      <div>
       <% @items_new.each do |item| %>
         <%= link_to item_path(item.id) do %>
-          <%= image_tag item.get_item_image, size:'200x150' %>
+          <%= image_tag item.get_image, size:'200x150' %>
         <% end %><br>
-      <h6><%= item.item_name %></h6>
-      <h6><%= item.add_tax_price.to_s(:delimited) %></h6>
+        <h6><%= item.name %></h6>
+        <h6>¥<%= item.add_tax_price.to_s(:delimited) %></h6>
       <% end %>
+      </div>
     </div>
   </div>
 
-  <div class="text-right">
+  <div class= "text-right mx-5 pb-5">
     <%= link_to "全ての商品を見る>", items_path, class:"btn btn-outline-danger btn-sm text-right" %>
   </div>
 
 </div>
-
-
-
-
-
-
-
-
-
-
