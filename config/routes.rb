@@ -52,10 +52,8 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-<<<<<
- 
-=======
+  
+  #検索用
+  get "search" => "searches#search"
 
-
->>>>>>> origin/develop
 end
