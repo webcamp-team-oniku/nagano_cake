@@ -12,6 +12,7 @@ class Public::DeliveriesController < ApplicationController
     if @delivery.save
       redirect_to request.referer
     else
+      @deliveries = current_customer.deliveries.all
       render 'index'
     end
   end
@@ -23,7 +24,7 @@ class Public::DeliveriesController < ApplicationController
   def update
     @delivery = Delivery.find(params[:id])
     if @delivery.update(delivery_params)
-      redirect_to delivery_path(@delivery.id)
+      redirect_to deliveries_path
     else
       render "edit"
     end
