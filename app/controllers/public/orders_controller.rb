@@ -2,7 +2,7 @@ class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
   def new
     @order = Order.new
-    @deliveries = current_customer.deliveries.all
+    @deliveries = current_customer.deliveries
   end
 
   def create
@@ -51,22 +51,18 @@ class Public::OrdersController < ApplicationController
   def thanks
   end
 
-
-
-
-
   def index
-    @orders = current_customer.orders
+     @orders = Order.where(customer_id: current_customer.id).order(created_at: :desc)
   end
 
   def show
     @shipping_cost = 800
-    @order = order.find(params[:id])
+    @order = Order.find(params[:id])
   end
 
   private
 
   def order_params
-    params.require(:order).permit(:postage, :shipping_cost, :status, :payment_method, :postcode, :name, :deliveries, :customer_id)
+    params.require(:order).permit(:total_price, :shipping_cost, :status, :payment_method, :postcode, :name, :deliveries, :customer_id)
   end
 end
