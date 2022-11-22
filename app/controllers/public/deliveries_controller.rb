@@ -23,7 +23,7 @@ class Public::DeliveriesController < ApplicationController
   def update
     @delivery = Delivery.find(params[:id])
     if @delivery.update(delivery_params)
-      redirect_to delivery_path(@delivery)
+      redirect_to delivery_path(@delivery.id)
     else
       render "edit"
     end
@@ -38,7 +38,7 @@ class Public::DeliveriesController < ApplicationController
   private
 
   def delivery_params
-    params.require(:delivery).permit(:customer_id, :post_code, :address, :name)
+    params.require(:delivery).permit(:customer_id, :postcode, :address, :name)
   end
 
 end
