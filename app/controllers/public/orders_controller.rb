@@ -6,9 +6,10 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
+      @order = Order.new(order_params)
       @order.customer_id = current_customer.id
-
+      @order.shipping_cost = 800
+      @order.save!
       # ordered_itmemの保存
       current_customer.cart_items.each do |cart_item| # カートの商品を1つずつ取り出しループ
         @order_item = OrderItem.new # 初期化宣言
@@ -63,6 +64,6 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:total_price, :shipping_cost, :status, :payment_method, :postcode, :name, :deliveries, :customer_id)
+    params.require(:order).permit(:total_price, :shipping_cost, :status, :payment_method, :postcode, :name, :deliveries, :customer_id, :address)
   end
 end
