@@ -10,6 +10,7 @@ class Public::OrdersController < ApplicationController
       @order.customer_id = current_customer.id
       @order.shipping_cost = 800
       @order.save! # オーダー情報保存
+
       # ordered_itmemの保存
       current_customer.cart_items.each do |cart_item| # カートの商品を1つずつ取り出しループ
         @order_item = OrderItem.new # 初期化宣言
