@@ -7,29 +7,29 @@
     <%= link_to "編集する", customers_edit_path, class: "btn btn-success btn-sm" %>
   </div>
 
-  <div class='row my-2 col-md-3'>
+  <div class='row my-3 col-md-7'>
     <table class='table table-hover table-inverse table-bordered'>
       <tr>
-        <th>氏名</th>
+        <th class="table-active">氏名</th>
         <td><%= @customer.last_name %><%= @customer.first_name %></td>
       <tr>
-        <th>カナ</th>
+        <th class="table-active">カナ</th>
         <td><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td>
       </tr>
       <tr>
-        <th>郵便番号</th>
+        <th class="table-active">郵便番号</th>
         <td><%= @customer.postcode %></td>
       </tr>
       <tr>
-        <th>住所</th>
+        <th class="table-active">住所</th>
         <td><%= @customer.address %></td>
       </tr>
       <tr>
-        <th>電話番号</th>
+        <th class="table-active">電話番号</th>
         <td><%= @customer.telephone_number %></td>
       </tr>
       <tr>
-        <th>メールアドレス</th>
+        <th class="table-active">メールアドレス</th>
         <td><%= @customer.email %></td>
     </table>
   </div>
