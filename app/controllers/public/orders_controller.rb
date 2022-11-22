@@ -30,7 +30,7 @@ class Public::OrdersController < ApplicationController
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
     elsif params[:order][:address_option] == "1"
-        ship = Address.find(params[:order][:customer_id])
+        ship = Delivery.find(params[:order][:delivary_id])
         @order.postcode = ship.postcode
         @order.address = ship.address
         @order.name = ship.name
