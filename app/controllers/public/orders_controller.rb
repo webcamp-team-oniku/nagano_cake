@@ -2,12 +2,25 @@ class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
   def new
     @order = Order.new
-    @deliveries = current_customer.deliveries.all
+    @deliveries = current_customer.deliveries
   end
 
-  def show
-    @shipping_cost = 800
-    @order = order.find(params[:id])
+  def create
+    @order = Order.new(order_params)
+      @order.customer_id = current_customer.id
+
+      # ordered_itmemの保存
+      current_customer.cart_items.each do |cart_item| # カートの商品を1つずつ取り出しループ
+        @order_item = OrderItem.new # 初期化宣言
+        @order_item.item_id = cart_item.item_id # 商品idを注文商品idに代入
+        @order_item.amount = cart_item.amount # 商品の個数を注文商品の個数に代入
+        @order_item.price = (cart_item.item.price*1.08).floor # 消費税込みに計算して代入
+        @order_item.order_id =  @order.id # 注文商品に注文idを紐付け
+        @order_item.save # 注文商品を保存
+      end
+
+      current_customer.cart_items.destroy_all # カートの中身を削除
+      redirect_to orders_thanks_path
   end
 
   def confirm
@@ -38,31 +51,18 @@ class Public::OrdersController < ApplicationController
   def thanks
   end
 
-  def idex
-    @orders = current_customer.order.all
+  def index
+     @orders = Order.where(customer_id: current_customer.id).order(created_at: :desc)
   end
 
-  def create
-    @order = Order.new(order_params)
-      @order.customer_id = current_customer.id
-
-      # ordered_itmemの保存
-      current_customer.cart_items.each do |cart_item| # カートの商品を1つずつ取り出しループ
-        @ordered_item = OrderedItem.new # 初期化宣言
-        @ordered_item.item_id = cart_item.item_id # 商品idを注文商品idに代入
-        @ordered_item.quantity = cart_item.quantity # 商品の個数を注文商品の個数に代入
-        @ordered_item.tax_included_price = (cart_item.item.price*1.08).floor # 消費税込みに計算して代入
-        @ordered_item.order_id =  @order.id # 注文商品に注文idを紐付け
-        @ordered_item.save # 注文商品を保存
-      end
-
-      current_customer.cart_items.destroy_all # カートの中身を削除
-      redirect_to orders_thanks_path
+  def show
+    @shipping_cost = 800
+    @order = Order.find(params[:id])
   end
 
   private
 
   def order_params
-    params.require(:order).permit(:postage, :shipping_cost, :status, :payment_method, :postcode, :name, :deliveries, :customer_id)
+    params.require(:order).permit(:total_price, :shipping_cost, :status, :payment_method, :postcode, :name, :deliveries, :customer_id)
   end
 end
