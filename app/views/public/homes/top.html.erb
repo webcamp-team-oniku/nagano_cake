@@ -1,40 +1,45 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-lg-2 pt-3">
+    
+    <div class="col-md-2 pt-3 d-flex align-items-start justify-content-center">
         <!-- ジャンル選択のサイドバー -->
         <%= render 'public/items/genre', genres: @genres %>
     </div>
-
-    <div class="col-lg-8 offset-md-3 mt-3">
-      <div class="card" style="background-size: cover;">
-        <img class="card-img " src="/assets/top.jpeg" alt="">
-        <div class="card-img-overlay">
-          <h5 >
-            ようこそ、ながのケーキへ！<br>
-            このサイトは、ケーキ販売のECサイトになります。<br>
-            会員でない方も商品の閲覧はできますが、<br>
-            購入には会員登録が必要になります。
-          </h5>
+    <div class="col-md-9 offset-md-1">
+      <div class="row-10 mb-5 top-image">
+        <div class="col-10 p-2">
+          <div class="card" style="background-size: cover;">
+            <img class="card-img " src="/assets/top.jpeg" alt="">
+            <div class="card-img-overlay">
+              <h5 >
+                ようこそ、ながのケーキへ！<br>
+                このサイトは、ケーキ販売のECサイトになります。<br>
+                会員でない方も商品の閲覧はできますが、<br>
+                購入には会員登録が必要になります。
+              </h5>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="row">
-    <div class="col-3">
-      <h3><strong>新着商品</strong></h3>
-      <div>
+  
+      <h3 class="mx-5 mb-4"><strong>新着商品</strong></h3>
+      <div class="row mx-auto">
       <% @items_new.each do |item| %>
+        <div class="col">
         <%= link_to item_path(item.id) do %>
           <%= image_tag item.get_image, size:'200x150' %>
         <% end %><br>
         <h6><%= item.name %></h6>
         <h6>¥<%= item.add_tax_price.to_s(:delimited) %></h6>
+        </div>
       <% end %>
       </div>
-    </div>
-  </div>
+    
 
   <div class= "text-right mx-5 pb-5">
     <%= link_to "全ての商品を見る>", items_path, class:"btn btn-outline-danger btn-sm text-right" %>
