@@ -3,12 +3,13 @@
     <div class="col-2">
       <!-ジャンル一覧表示->
       <%= render 'genre', genres: @genres %>
+    </div>
 
     <div class="col-10">
       <div class="mt-2">
         <h3><strong>商品一覧</strong><span class="small">（全<%= @items_all.count %>件）</span></h3>
 
-      　<div class="d-flex flex-wrap item-link mb-5">
+       <div class="d-flex flex-wrap item-link mb-5">
           <% @items.each do |item| %>
             <%= link_to item_path(item), class: "text-dark" do %>
               <div class="m-1 p-1">
@@ -26,10 +27,9 @@
         </div>
         <!-ページネーション->
         <div class="d-flex justify-content-center">
-        　<%= paginate @items %>
+          <%= paginate @items %>
         </div>
       </div>
-    </div>
     </div>
   </div>
 </div>

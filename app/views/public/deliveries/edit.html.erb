@@ -4,7 +4,7 @@
     </h5>
 
       <!-配達先変更フォーム->
-      <%= form_with model: @delivery, url: deliveries_path, method: :patch do |f| %>
+      <%= form_with model: @delivery, url: delivery_path, method: :patch do |f| %>
         <div class="row">
           <div class="col-3 mt-3">
             <%= f.label :postcode, "郵便番号(ハイフンなし)" %>
@@ -35,5 +35,4 @@
           </div>
         </div>
       <% end %>
-
 </div>
