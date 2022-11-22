@@ -1,5 +1,6 @@
 class Admin::OrdersController < ApplicationController
-  
+  #before_action :authenticate_admin!
+
   def index
     @customer = Customer.find(params[:id])
     @orders = @customer.orders.page(params[:page]).order(created_at: "DESC")
@@ -14,7 +15,7 @@ class Admin::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order_items = OrderItem.where(order_id: params[:id])
     if @order.update(order_params)
-      @order.order_items.update_all(status: 1) if @order.status == "is_waiting" 
+      @order_items.update_all(status: 1) if @order.status == "is_waiting"
     end
       #入金確認したら自動更新で製作ステータスが全て製作待ちになる
     redirect_to request.referer
@@ -22,9 +23,9 @@ class Admin::OrdersController < ApplicationController
 
 
   private
+    def order_params
+      params.require(:order).permit(:status)
+    end
 
-  def order_params
-    params.require(:orders).permit(:status)
-  end
 end
 

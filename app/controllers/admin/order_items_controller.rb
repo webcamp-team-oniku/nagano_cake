@@ -1,13 +1,14 @@
 class Admin::OrderItemsController < ApplicationController
+  #before_action :authenticate_admin!
   
   def update
     @order = Order.find(params[:order_id])
     @order_item = OrderItems.find(params[:id])
-    @order_items = @order.order_item.all
+    @order_items = @order.order_items.all
     
     is_updated = true
     if @order_item.update(order_item_params)
-      @order_item.update(status: 2) if @order_item.status == "in_production"# 製作ステータスを製作中にすると、注文ステータスを製作中に自動更新
+      @order.update(status: 2) if @order_item.status == "in_production"# 製作ステータスを製作中にすると、注文ステータスを製作中に自動更新
       @order_items.each do |order_item|
         if order_item.status != "completed" # 製作ステータスが全て製作完了ではない場合 
           is_updated = false # 上記で定義してあるis_updatedをfalseに変更
@@ -23,5 +24,6 @@ private
   def order_item_params
       params.require(:order_item).permit(:status)
   end
-  
+end
 
+  
