@@ -37,7 +37,7 @@
         </div>
         <div class='col-3'>
             <table class="table table-bordered border-dark">
-                <% @order.postcode = 800 %>
+                <% @order.shipping_cost = 800 %>
                 <tr><th class="table-secondary">送料</th><td><%= @shipping_cost %></td></tr>
                 <tr><th class="table-secondary">商品合計</th><td><%= total.to_i %></td></tr>
                 <% @order.total_price = @shipping_cost.to_i + total.to_i %>
@@ -61,7 +61,7 @@
     <div class="row justify-content-center">
         <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
             <%= f.hidden_field :customer_id %>
-            <%= f.hidden_field :postcode %>
+            <%= f.hidden_field :shipping_cost %>
             <%= f.hidden_field :total_price %>
             <%= f.hidden_field :payment_method %>
             <%= f.hidden_field :name %>
