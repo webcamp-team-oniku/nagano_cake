@@ -27,6 +27,7 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
+
     if params[:order][:address_option] == "0"
       @order.postcode = current_customer.postcode
       @order.address = current_customer.address
