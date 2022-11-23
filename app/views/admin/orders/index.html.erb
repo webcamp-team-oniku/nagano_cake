@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
-    
-    <div class="col">
+
+    <div class="col-12 mt-5">
       <h4><%= @customer.last_name %><%= @customer.first_name %>さんの注文履歴</h4>
       <table class="table table-hover">
-        <thead class="table-secondary">
+        <thead class="thead-light">
           <tr>
             <th>購入日時</th>
             <th>注文個数</th>
@@ -14,17 +14,27 @@
         <tbody>
           <% @orders.each do |order| %>
           <tr>
-            <td><%= order.created_at.strftime("%Y/%m/%d/ %H:%M:%S") %></td>
-            <td><%= order.order_items.amount %></td>
+            <td><%= link_to admin_order_path(order.id) do %>
+                  <%= order.created_at.strftime("%Y/%m/%d/ %H:%M:%S") %>
+                <% end %>
+            </td>
+            <td><% total_amount = 0 %>
+                <% order.order_items.each do |order_items| %>
+                  <% amounts = order_items.amount %>
+                  <% total_amount += amounts %>
+                <% end %>
+                <%= total_amount %>
+            </td>
             <td><%= order.status_i18n %></td>
           </tr>
           <% end %>
         </tbody>
       </table>
-      
+
       <div class="d-flex justify-content-center">
       <%= paginate @orders %>
       </div>
     </div>
   </div>
 </div>
+
