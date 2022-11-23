@@ -6,7 +6,7 @@
   </div>
 
 
-<%= form_with url: admin_customer_path(@customer), model: @customer, local: true do |customer| %>
+<%= form_with url: admin_customer_path(@customer), method: :patch, model: @customer do |customer| %>
   <div class= "form-group pl-2">
     <%= customer.label :id, '会員ID', class: "col-2 control-label" %>
     <%= @customer.id %>
