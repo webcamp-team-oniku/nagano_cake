@@ -2,9 +2,7 @@
   <div class="row">
     <h5><span class="py-1 px-4 bg-light alert-secondary ">商品一覧</span></h5>
       <div class="ml-auto mr-3">
-        <%= link_to new_admin_item_path do %>
-          <i class="fa fa-plus-circle fa-3x" style="color: #d3d3d3;"></i> <!– ＋アイコン作成 –>
-        <% end %>
+        <%= link_to "+", new_admin_item_path, class: "btn btn-outline-secondary rounded-circle shadow font-weight-bold" %>
       </div>
   </div>
   <div class='col-md-10 ml-5'>

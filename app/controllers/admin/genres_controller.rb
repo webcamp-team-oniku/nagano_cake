@@ -1,5 +1,6 @@
 class Admin::GenresController < ApplicationController
-    # before_action :authenticate_admin!
+    # 管理者がログインしてなかったら表示されない
+    before_action :authenticate_admin!
     def index
       @genre = Genre.new
       @genres = Genre.all

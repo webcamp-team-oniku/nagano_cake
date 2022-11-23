@@ -1,9 +1,9 @@
 class Admin::ItemsController < ApplicationController
     # 管理者がログインしてなかったら表示されない
-    # before_action :authenticate_admin!
+    before_action :authenticate_admin!
     def index
       # ページネーション
-      @items = Item.page(params[:page])
+      @items = Item.page(params[:page]).per(10)
     end
 
     def new
