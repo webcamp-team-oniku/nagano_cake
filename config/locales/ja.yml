@@ -12,7 +12,7 @@ ja:
         credit_card: "クレジットカード"
         transfer: "銀行振込"
     order_item:
-      status:
+      making_status:
         cannot_make: "着手不可"
         is_waiting: "製作待ち"
         is_making: "製作中"
