@@ -3,7 +3,7 @@ class OrderItem < ApplicationRecord
   belongs_to :order
   belongs_to :item
   
-  enum status: {
+  enum making_status: {
     
     cannot_make: 0, 
     is_waiting: 1, 
