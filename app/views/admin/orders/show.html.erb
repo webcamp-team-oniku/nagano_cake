@@ -4,29 +4,29 @@
 
     <div class="col">
       <div class="mx-auto">
-      <h3 class="mt-5"><strong>注文履歴詳細</strong></h3>
+      <h3 class="mt-5"><span class="alart alert-secondary"><strong>注文履歴詳細</strong></span></h3>
 
         <table>
           <tr>
-            <th>購入者</th>
-            <td><%= @order.customer.last_name %><%= @order.customer.first_name %></td>
+            <th class="py-1">購入者</th>
+            <td><%= link_to  @order.customer.last_name + @order.customer.first_name, admin_customer_path %></td>
           </tr>
           <tr>
-            <th>注文日</th>
+            <th class="py-1">注文日</th>
             <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
           </tr>
           <tr>
-            <th>配送先</th>
+            <th class="py-1">配送先</th>
             <td>〒<%= @order.postcode %><%= @order.address %><br>
                 <%= @order.name %>
             </td>
           </tr>
           <tr>
-            <th>支払方法</th>
+            <th class="py-1">支払方法</th>
             <td><%= @order.payment_method_i18n %></td>
           </tr>
           <tr>
-            <th>注文ステータス</th>
+            <th class="py-2">注文ステータス</th>
             <td><%= form_with model: @order, url: admin_order_path(@order), method: :patch do |f| %>
                 <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]}  %>
                 <%= f.submit "更新" , class: "btn  btn-sm btn-success ml-3" %>
@@ -38,7 +38,7 @@
 
       <div class="row mt-5">
         <div class="col-8">
-        <table class="table table-hover">
+        <table class="table border">
           <thead class="bg-light">
             <tr>
               <th>商品名</th>
@@ -66,10 +66,10 @@
         </table>
         </div>
 
-        <div class="col-4 mt-5">
-          <h5>商品合計 ¥<%= (@order.total_price - @order.shipping_cost).to_s(:delimited) %></h5>
-          <h5>送料¥<%= @order.shipping_cost %></h5>
-          <h5>請求金額合計 ¥<%= @order.total_price.to_s(:delimited) %></h5>
+        <div class="col-3 mt-5 ml-auto">
+          <h5 class="ml-3"><strong>商品合計</strong>　　　 <%= (@order.total_price - @order.shipping_cost).to_s(:delimited) %>円</h5>
+          <h5 class="ml-3"><strong>送料</strong>　　　　　　<%= @order.shipping_cost %>円</h5>
+          <h5 class="ml-3 font-weight-bold">請求金額合計  　<%= @order.total_price.to_s(:delimited) %>円</h5>
         </div>
 
       </div>
