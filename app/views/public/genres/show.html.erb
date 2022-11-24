@@ -1,18 +1,16 @@
 <div class="container">
   <div class="row">
-    
-    <div class="col-lg-2 pt-3">
+
+    <div class="col-2">
     <!-- ジャンル選択のサイドバー -->
     <%= render "public/items/genre", genres: @genres %>
     </div>
-  
-    <div class="p-3 col-9 pl-5">
-      <div class="d-flex align-items-end">
-        <h2><%= Genre.find(params[:id]).name %>一覧</h2>
+
+    <div class="col-10">
+      <div class="mt-2">
+        <h3><strong><%= Genre.find(params[:id]).name %>一覧</strong></h3>
         <h6>（全 <%= @items.length %> 件）</h6>
-      </div>
-      <div class="col-10">
-          <div class="mt-2">
+
           　<div class="d-flex flex-wrap item-link mb-5">
               <% @items.each do |item| %>
                 <%= link_to item_path(item), class: "text-dark" do %>
@@ -28,10 +26,10 @@
                   </div>
                 <% end %>
               <% end %>
-            </div>
-          </div>  
+      </div>
+    </div>
       <%= paginate @items.page(params[:page]) %>
-      
+
     </div>
   </div>
 </div>
