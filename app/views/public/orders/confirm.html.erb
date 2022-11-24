@@ -17,20 +17,20 @@
             <% @cart_items.each do |cart_item| %>
               <tr>
                   <td>
-                      <%= image_tag cart_item.item.get_image,size: "50x50" %>
-                      <%= cart_item.item.name %>
+                      <%= image_tag cart_item.item.get_image,size: "30x30" %>
+                      <strong><%= cart_item.item.name %></strong>
                   </td>
                   <td><%= (cart_item.item.price*1.1).to_i %></td>
                   <td><%= cart_item.amount %></td>
                   <td>
                       <!--小計の計算-->
-                      <% subtotal = ((cart_item.item.price*cart_item.amount)*1.08).to_i %>
+                      <% subtotal = ((cart_item.item.price*cart_item.amount)*1.1).to_i %>
                       <!--小計を表示-->
-                      <%= subtotal %>
+                      <%= subtotal.to_s(:delimited) %>
                   </td>
               </tr>
               <!--アイテムごとに合計金額に加算する-->
-              <% total += (cart_item.item.price*cart_item.amount)*1.08 %>
+              <% total = (cart_item.item.price*cart_item.amount*1.1) %>
             <% end %>
           </table>
         </div>
@@ -38,15 +38,15 @@
             <table class="table table-bordered border-dark">
                 <% @order.shipping_cost = 800 %>
                 <tr><th class="table-secondary">送料</th><td><%= @shipping_cost %></td></tr>
-                <tr><th class="table-secondary">商品合計</th><td><%= total.to_i %></td></tr>
+                <tr><th class="table-secondary">商品合計</th><td><%= @total.round.to_s(:delimited) %></td></tr>
                 <% @order.total_price = @shipping_cost.to_i + total.to_i %>
-                <tr><th class="table-secondary">請求金額</th><td><%= @order.total_price %></td></tr>
+                <tr><th class="table-secondary">請求金額</th><td><%= (@shipping_cost.to_i + @total.to_i).to_s(:delimited) %></td></tr>
             </table>
         </div>
     </div>
 
     <div class="row">
-        <div class='col-11 offset-1'>
+        <div class='col-11'>
             <table class="table table-borderless">
                 <tr><th class="col-1">支払方法</th><td class="col-10"><%= @order.payment_method_i18n %></td></tr>
                 <tr><th class="col-1">お届け先</th><td class="col-10">

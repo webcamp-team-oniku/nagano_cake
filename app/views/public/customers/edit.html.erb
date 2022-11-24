@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
     <div class='pt-10 pl-5 ml-5'>
-      <h1>会員情報編集</h1><br/>
+      <h3><p class ="alart alert-secondary text-dark">会員情報編集</p></h3><br>
     </div>
   </div>
 
 
-<%= form_with url: admin_customer_path(@customer), model: @customer, local: true do |customer| %>
+<%= form_with url: customers_path(@customer), method: :patch, model: @customer, local: true do |customer| %>
 
   <div class= "form-group">
     <%= customer.label "氏名", class: "col-sm-2 control-label"%>
