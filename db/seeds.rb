@@ -11,6 +11,38 @@ Admin.create(
   email: "admin@admin",
   password: "adminadmin"
   )
+# 会員側のメールアドレス
+Customer.create(
+  [
+    {
+      email: "oniku@oniku",
+      password: "onikuoniku",
+      first_name: "太郎",
+      last_name: "鶏肉",
+      first_name_kana: "タロウ",
+      last_name_kana: "トリニク",
+      address: "お肉",
+      postcode: "1234567",
+      telephone_number: "0123456789",
+      is_deleted: "false",
+    },
+    {
+      email: "gyuoniku@gyuoniku",
+      password: "onikuoniku",
+      first_name: "二郎",
+      last_name: "牛肉",
+      first_name_kana: "ジロウ",
+      last_name_kana: "ギュウニク",
+      address: "牛肉",
+      postcode: "0123456",
+      telephone_number: "1234567890",
+      is_deleted: "false",
+    }
+  ]
+)
+
+
+
 
 # ジャンル一覧
   Genre.create(name: "ケーキ")
@@ -138,7 +170,7 @@ Admin.create(
       introduction: '秋季限定品。',
       price: 800,
       genre_id: 1,
-      is_active: false,
+      is_active: true,
       image: ActiveStorage::Blob.create_and_upload!(io: File.open("app/assets/images/montblanc.jpeg"), filename: 'default-image.jpeg')
     }
   ]
