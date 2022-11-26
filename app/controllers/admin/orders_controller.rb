@@ -13,12 +13,12 @@ class Admin::OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    @order_items = OrderItem.where(order_id: params[:id])
-    if @order.update(order_params)
-      @order_items.update_all(status: 1) if @order.status == "is_waiting"
+    @order.update(order_params)
+    #入金確認したら自動更新で製作ステータスが全て製作待ちになる
+    if params[:order][:status] == "confirm_deposit"
+      @order.order_items.update_all(making_status: "is_waiting")
     end
-      #入金確認したら自動更新で製作ステータスが全て製作待ちになる
-    redirect_to request.referer
+    redirect_to admin_order_path(@order)
   end
 
 
