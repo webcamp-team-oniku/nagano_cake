@@ -23,8 +23,8 @@
       <p><strong>請求情報</strong></p>
       <table class="table table-bordered">
         <tr><th class="table-active">送料</th><td>800</td></tr>
-        <tr><th class="table-active">商品合計</th><td><%= @order.total_price.to_s(:delimited) %></td></tr>
-        <tr><th class="table-active">請求合計</th><td><%= (@order.total_price + @shipping_cost).to_s(:delimited) %></td></tr>
+        <tr><th class="table-active">商品合計</th><td><%= (@order.total_price - @shipping_cost).to_s(:delimited) %></td></tr>
+        <tr><th class="table-active">請求合計</th><td><%= @order.total_price.to_s(:delimited) %></td></tr>
       </table>
     </div>
   </div>
