@@ -16,7 +16,7 @@ class Public::OrdersController < ApplicationController
         @order_item = OrderItem.new # 初期化宣言
         @order_item.item_id = cart_item.item_id # 商品idを注文商品idに代入
         @order_item.amount = cart_item.amount # 商品の個数を注文商品の個数に代入
-        @order_item.price = (cart_item.item.price*1.08).floor # 消費税込みに計算して代入
+        @order_item.price = (cart_item.item.price*1.1).floor # 消費税込みに計算して代入
         @order_item.order_id =  @order.id # 注文商品に注文idを紐付け
         @order_item.save # 注文商品を保存
       end
@@ -57,7 +57,7 @@ class Public::OrdersController < ApplicationController
 
   def index
      @orders = current_customer.orders
-     
+     @shipping_cost = 800
   end
 
   def show
