@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
+
+
   root :to =>"public/homes#top"
   get '/about' =>"public/homes#about"
-  resources :items, only: [:index,:show]
 
 
   scope module: :public do
@@ -16,10 +17,14 @@ Rails.application.routes.draw do
     # 顧客側のカート画面
     delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
     resources :cart_items, only: [:index, :update, :create, :destroy]
+    #ジャンル検索
+    resources :genres, only: [:show]
 
 
     post '/orders/confirm' => 'orders#confirm'
     get '/orders/thanks' => 'orders#thanks'
+
+    resources :items, only: [:index,:show]
 
     resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
 
@@ -33,19 +38,27 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :edit, :update, :show]
     resources :orders, only: [:show, :update]
+    get "index/:id" => "orders#index"
     resources :order_items, only: [:update]
   end
 
-   # 管理者用
-  # URL /admin/sign_in ...
-  devise_for :admin, skip:[:registrations, :passwords],controllers:{
-    sessions: "admin/sessions"
-  }
 
-  # 顧客用
+   # 顧客用
   # URL /customers/sign_in ...
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+    # 管理者用
+  # URL /admin/sign_in ...
+  devise_for :admin, skip:[:registrations, :passwords],controllers:{
+    sessions: "admin/sessions"
+  }
+
+
+
+  #検索用
+  get "search" => "searches#search"
+
+
 end

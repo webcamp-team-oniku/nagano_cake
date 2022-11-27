@@ -10,7 +10,118 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+
+
+    <header class="fixed-top bg-danger bg-opacity-75">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+
+           <a class="h1 text-light shadow border font-italic bg-dark" style="text-decoration:none;" href="/">naganocake</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+            <ul class="navbar-nav ml-auto">
+            <% if admin_signed_in? %>
+              <% if request.fullpath.include? "/admin" %>
+                <li class='mx-4'>
+                  <%= link_to admin_items_path,class: 'btn btn-outline-light' do %>商品一覧<% end %>
+                </li>
+                <li class='mx-4'>
+                  <%= link_to admin_customers_path,class: 'btn btn-outline-light' do %>会員一覧<% end %>
+                </li>
+                <li class='mx-4'>
+                  <%=  link_to admin_root_path,class: 'btn btn-outline-light' do %>注文履歴一覧<% end %>
+                </li>
+                <li class='mx-4'>
+                  <%=  link_to admin_genres_path,class: 'btn btn-outline-light' do %>ジャンル一覧<% end %>
+                </li>
+                <li class='mx-4'>
+                  <%= link_to destroy_admin_session_path, method: :delete,class: 'btn btn-outline-light' do %>ログアウト<% end %>
+                </li>
+              <% else %>
+                <li class="my-auto pr-5 mr-5 text-light">
+                  現在、管理者アカウントでログインしています。
+                </li>
+                <li class='mx-4'>
+                  <%= link_to customers_path,class: 'btn btn-outline-light' do %>マイページ<% end %>
+                </li>
+                <li class='mx-4'>
+                  <%=  link_to items_path,class: 'btn btn-outline-light' do %>商品一覧<% end %>
+                </li>
+                <li class='mx-4'>
+                  <%=  link_to cart_items_path,class: 'btn btn-outline-light' do %>カート<% end %>
+                </li>
+                <li class='mx-4'>
+                  <%= link_to destroy_customer_session_path, method: :delete,class: 'btn btn-outline-light' do %>ログアウト<% end %>
+                </li>
+
+              <% end %>
+            <% elsif customer_signed_in? %>
+              <li class="my-auto pr-5 mr-5 text-light">
+                ようこそ、<%= current_customer.last_name %>さん！
+              </li>
+
+              <li class='mx-4'>
+                <%= link_to customers_path,class: 'btn btn-outline-light' do %>マイページ<% end %>
+              </li>
+              <li class='mx-4'>
+                <%=  link_to items_path,class: 'btn btn-outline-light' do %>商品一覧<% end %>
+              </li>
+              <li class='mx-4'>
+                <%=  link_to cart_items_path,class: 'btn btn-outline-light' do %>カート<% end %>
+              </li>
+              <li class='mx-4'>
+                <%= link_to destroy_customer_session_path, method: :delete,class: 'btn btn-outline-light' do %>ログアウト<% end %>
+              </li>
+
+            <% else %>
+
+              <li class='mx-4'>
+                <%= link_to about_path,class: 'btn btn-outline-light' do %>
+                  About
+                <% end %>
+              </li>
+              <li class='mx-4'>
+                <%= link_to items_path,class: 'btn btn-outline-light' do %>商品一覧<% end %>
+              </li>
+              <li class='mx-4'>
+                <%= link_to new_customer_registration_path,class: 'btn btn-outline-light' do %>新規登録<% end %>
+              </li>
+              <li class='mx-4'>
+                <%= link_to new_customer_session_path ,class: 'btn btn-outline-light' do %>ログイン<% end %>
+              </li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+        <!--検索機能 -->
+        <div class="search_area m-2 col-3 pl-5 offset-9 ml-auto">
+          <%= form_with url: search_path, class: "input-group ms-auto", method: :get do |f| %>
+            <%= f.text_field :search, class: "form-control rounded-start", placeholder: "検索", value: params[:search] %>
+            <div class="input-group-append">
+              <%= f.button :type => "submit", name: nil, class: "btn btn-outline-light" do %>
+                <i class="fas fa-search"></i>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+
+    </header>
+    <body class='pt-5 mt-5'>
+      <main class = 'mt-5'>
+        <%= yield %>
+      </main>
   </body>
+  <footer>
+    <div class="container mt-5">
+        <div class="row">
+          <div class="mx-auto">
+         <p>@nagano_cake</p>
+       </div>
+    </div>
+  </footer>
 </html>

@@ -1,0 +1,13 @@
+<div class="border border-dark">
+  <p class="border-bottom border-dark text-center"><strong>ジャンル検索</strong></p>
+    <div>
+      <!-- ジャンル呼び出し-->
+      <ul class="list-unstyled">
+        <% genres.each do |genre| %>
+          <%= link_to genre_path(genre.id), class: "text-dark text-decoration-underline" do %>
+            <li class="my-2 ml-3"><%= genre.name %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+</div>

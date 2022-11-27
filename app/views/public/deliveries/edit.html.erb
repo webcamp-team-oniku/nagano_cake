@@ -1,0 +1,38 @@
+<div class="container">
+    <h5 class="col-md-7 mb-5 mt-3">
+      <span class="px-3 ml-5 bg-ligh alert-secondary">配送先編集</span>
+    </h5>
+
+      <!-配達先変更フォーム->
+      <%= form_with model: @delivery, url: delivery_path, method: :patch do |f| %>
+        <div class="row">
+          <div class="col-3 mt-3">
+            <%= f.label :postcode, "郵便番号(ハイフンなし)" %>
+          </div>
+          <div class="col-3">
+            <%= f.text_field :postcode, placeholder: "0000000", class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3 mt-3">
+            <%= f.label :address, "住所" %>
+          </div>
+          <div class="col-5">
+            <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3 mt-3">
+            <%= f.label :name, "宛名" %>
+          </div>
+          <div class="col-3">
+            <%= f.text_field :name, placeholder: "令和道子", class: "form-control" %>
+          </div>
+          <div class="col-1 px-5 ml-5">
+            <%= f.submit "変更内容を保存", class: "btn btn-success px-5 ml-5", style: "font-weight: bold;" %>
+          </div>
+        </div>
+      <% end %>
+</div>
