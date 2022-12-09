@@ -6,11 +6,6 @@ before_action :configure_permitted_parameters, if: :devise_controller?
   private
 
   def after_sign_in_path_for(resource)
-    # （10/20 その）public/customersを作成していないため、顧客のマイページへの移動不可能
-    # そのため一時的にtopページへの移動させています
-    # public/customersを作成後に下記訂正予定
-    # ↓10／23pathの後ろの(resource)を削除しました。urlにmy_page.1と表示されるため（しま）
-    # 10/26マイページからトップページに飛ぶように設定しました。（りんたろう）
     root_path
   end
 
